@@ -161,10 +161,10 @@ export const DatapathSimulator: React.FC = () => {
                 setCurrentStep(0);
                 setIsPlaying(false);
               }}
-              className={`px-2.5 py-1 rounded-xl text-xs font-mono font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold border transition-all cursor-pointer ${
                 selectedInstruction === p.inst && isIndirect === p.ind && addressOperand === p.addr
-                  ? 'bg-cyan-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-md shadow-cyan-500/20'
-                  : 'sub-panel border text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500 shadow-sm font-black'
+                  : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
               }`}
             >
               {p.label}

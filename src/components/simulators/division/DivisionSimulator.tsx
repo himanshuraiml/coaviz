@@ -179,17 +179,17 @@ export const DivisionSimulator: React.FC = () => {
       {/* Algorithm Mode Switcher & Presets */}
       <div className="bg-card-bg border border-border-main rounded-2xl p-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-sm">
         {/* Toggle Algorithm */}
-        <div className="flex items-center gap-1.5 bg-card-surface p-1 rounded-xl border border-border-main">
+        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
           <button
             onClick={() => {
               setAlgorithm('restoring');
               setCurrentStep(0);
               setIsPlaying(false);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               algorithm === 'restoring'
-                ? 'bg-accent-primary text-white shadow-sm'
-                : 'text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm font-black'
+                : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
             }`}
           >
             Restoring Division
@@ -200,10 +200,10 @@ export const DivisionSimulator: React.FC = () => {
               setCurrentStep(0);
               setIsPlaying(false);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               algorithm === 'non-restoring'
-                ? 'bg-accent-primary text-white shadow-sm'
-                : 'text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm font-black'
+                : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
             }`}
           >
             Non-Restoring Division
@@ -225,10 +225,10 @@ export const DivisionSimulator: React.FC = () => {
                 setCurrentStep(0);
                 setIsPlaying(false);
               }}
-              className={`px-2.5 py-1 rounded-xl text-xs font-bold font-mono transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold font-mono border transition-all cursor-pointer ${
                 dividend === p.d && divisor === p.m
-                  ? 'bg-accent-primary text-white shadow-sm'
-                  : 'bg-card-surface border border-border-main text-text-body hover:border-accent-primary hover:bg-card-subtle'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500 shadow-sm font-black'
+                  : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
               }`}
             >
               {p.label}
@@ -241,27 +241,27 @@ export const DivisionSimulator: React.FC = () => {
           {/* Comparative Mode Button */}
           <button
             onClick={() => setIsComparativeView(!isComparativeView)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
               isComparativeView
-                ? 'bg-accent-secondary text-white border-accent-secondary shadow-sm'
-                : 'bg-card-surface border-border-main text-text-body hover:border-accent-secondary'
+                ? 'bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500 shadow-sm font-black'
+                : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-xs'
             }`}
           >
-            <SplitSquareVertical className="w-3.5 h-3.5" />
+            <SplitSquareVertical className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
             <span>Comparative View</span>
           </button>
 
           {/* Practice Mode Button */}
           <button
             onClick={() => setIsPracticeMode(!isPracticeMode)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
               isPracticeMode
-                ? 'bg-indigo-500 text-white border-indigo-600 shadow-sm'
-                : 'bg-card-surface border-border-main text-text-body hover:border-indigo-500'
+                ? 'bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500 shadow-sm font-black'
+                : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-xs'
             }`}
           >
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Practice</span>
+            <HelpCircle className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
+            <span>Practice Mode</span>
           </button>
 
           {/* Export Menu */}

@@ -184,10 +184,10 @@ export const VirtualMemorySimulator: React.FC = () => {
             <button
               key={idx}
               onClick={() => handleApplyAddress(p.addr)}
-              className={`px-2.5 py-1 rounded-xl text-xs font-mono font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold border transition-all cursor-pointer ${
                 virtualAddress === p.addr
-                  ? 'bg-accent-primary text-white shadow-sm'
-                  : 'bg-card-surface border border-border-main text-text-body hover:border-accent-primary hover:bg-card-subtle'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500 shadow-sm font-black'
+                  : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
               }`}
             >
               {p.label}
@@ -213,7 +213,7 @@ export const VirtualMemorySimulator: React.FC = () => {
           <button
             onClick={handleCommitUpdates}
             title="Commit TLB & Page Table updates"
-            className="px-3 py-1.5 rounded-xl text-xs font-bold bg-accent-emerald/15 text-accent-emerald border border-accent-emerald/40 hover:bg-accent-emerald/25 transition-all shadow-sm"
+            className="px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-all shadow-sm cursor-pointer"
           >
             Commit
           </button>
@@ -221,7 +221,7 @@ export const VirtualMemorySimulator: React.FC = () => {
           <button
             onClick={handleResetAllVM}
             title="Reset VM state to initial default"
-            className="p-2 rounded-xl bg-card-surface border border-border-main text-text-muted hover:text-text-heading hover:bg-card-subtle transition-all shadow-sm"
+            className="p-2 rounded-xl bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm cursor-pointer"
           >
             <RotateCw className="w-4 h-4" />
           </button>

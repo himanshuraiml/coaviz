@@ -20,32 +20,32 @@ const COLOR_MAP: Record<BlockColor, {
   labelColor: string; valueColor: string;
 }> = {
   cyan: {
-    fill: 'var(--card-bg)', stroke: 'var(--border-main)', activeFill: 'var(--card-surface)',
-    activeStroke: 'var(--accent-primary)', labelColor: 'var(--text-muted)', valueColor: 'var(--accent-primary)',
+    fill: 'rgb(var(--card-bg))', stroke: 'rgb(var(--border-main))', activeFill: 'rgb(var(--card-surface))',
+    activeStroke: 'rgb(var(--accent-primary))', labelColor: 'rgb(var(--text-muted))', valueColor: 'rgb(var(--accent-primary))',
   },
   indigo: {
-    fill: 'var(--card-bg)', stroke: 'var(--border-main)', activeFill: 'var(--card-surface)',
-    activeStroke: 'var(--accent-secondary)', labelColor: 'var(--text-muted)', valueColor: 'var(--accent-secondary)',
+    fill: 'rgb(var(--card-bg))', stroke: 'rgb(var(--border-main))', activeFill: 'rgb(var(--card-surface))',
+    activeStroke: 'rgb(var(--accent-secondary))', labelColor: 'rgb(var(--text-muted))', valueColor: 'rgb(var(--accent-secondary))',
   },
   amber: {
-    fill: 'var(--card-bg)', stroke: 'var(--border-main)', activeFill: 'var(--card-surface)',
-    activeStroke: 'var(--accent-amber)', labelColor: 'var(--text-muted)', valueColor: 'var(--accent-amber)',
+    fill: 'rgb(var(--card-bg))', stroke: 'rgb(var(--border-main))', activeFill: 'rgb(var(--card-surface))',
+    activeStroke: 'rgb(var(--accent-amber))', labelColor: 'rgb(var(--text-muted))', valueColor: 'rgb(var(--accent-amber))',
   },
   emerald: {
-    fill: 'var(--card-bg)', stroke: 'var(--border-main)', activeFill: 'var(--card-surface)',
-    activeStroke: 'var(--accent-emerald)', labelColor: 'var(--text-muted)', valueColor: 'var(--accent-emerald)',
+    fill: 'rgb(var(--card-bg))', stroke: 'rgb(var(--border-main))', activeFill: 'rgb(var(--card-surface))',
+    activeStroke: 'rgb(var(--accent-emerald))', labelColor: 'rgb(var(--text-muted))', valueColor: 'rgb(var(--accent-emerald))',
   },
   rose: {
-    fill: 'var(--card-bg)', stroke: 'var(--border-main)', activeFill: 'var(--card-surface)',
-    activeStroke: 'var(--accent-rose)', labelColor: 'var(--text-muted)', valueColor: 'var(--accent-rose)',
+    fill: 'rgb(var(--card-bg))', stroke: 'rgb(var(--border-main))', activeFill: 'rgb(var(--card-surface))',
+    activeStroke: 'rgb(var(--accent-rose))', labelColor: 'rgb(var(--text-muted))', valueColor: 'rgb(var(--accent-rose))',
   },
   purple: {
-    fill: 'var(--card-bg)', stroke: 'var(--border-main)', activeFill: 'var(--card-surface)',
-    activeStroke: '#a855f7', labelColor: 'var(--text-muted)', valueColor: '#9333ea',
+    fill: 'rgb(var(--card-bg))', stroke: 'rgb(var(--border-main))', activeFill: 'rgb(var(--card-surface))',
+    activeStroke: '#a855f7', labelColor: 'rgb(var(--text-muted))', valueColor: '#9333ea',
   },
   slate: {
-    fill: 'var(--card-bg)', stroke: 'var(--border-main)', activeFill: 'var(--card-surface)',
-    activeStroke: 'var(--wire-color)', labelColor: 'var(--text-muted)', valueColor: 'var(--text-heading)',
+    fill: 'rgb(var(--card-bg))', stroke: 'rgb(var(--border-main))', activeFill: 'rgb(var(--card-surface))',
+    activeStroke: 'var(--wire-color)', labelColor: 'rgb(var(--text-muted))', valueColor: 'rgb(var(--text-heading))',
   },
 };
 
@@ -83,7 +83,7 @@ export const HwBlock: React.FC<HwBlockProps> = ({
       <rect
         width={width} height={height}
         rx={rx}
-        fill={c.fill}
+        fill={isActive ? c.activeFill : c.fill}
         stroke={isActive ? c.activeStroke : c.stroke}
         strokeWidth={isActive ? 2.5 : 1.5}
         style={{
@@ -97,7 +97,7 @@ export const HwBlock: React.FC<HwBlockProps> = ({
         y={sublabel || value ? height * 0.34 : height / 2}
         textAnchor="middle"
         dominantBaseline="middle"
-        fill={isActive ? c.activeStroke : 'var(--text-muted)'}
+        fill={isActive ? c.activeStroke : 'rgb(var(--text-muted))'}
         fontSize={10}
         fontWeight="800"
         fontFamily="'Plus Jakarta Sans', 'Inter', sans-serif"
@@ -112,7 +112,7 @@ export const HwBlock: React.FC<HwBlockProps> = ({
           y={height * 0.68}
           textAnchor="middle"
           dominantBaseline="middle"
-          fill="var(--text-faint)"
+          fill="rgb(var(--text-faint))"
           fontSize={9}
           fontWeight="600"
           fontFamily="'Plus Jakarta Sans', sans-serif"
@@ -128,7 +128,7 @@ export const HwBlock: React.FC<HwBlockProps> = ({
           y={height * 0.68}
           textAnchor="middle"
           dominantBaseline="middle"
-          fill={isActive ? c.valueColor : 'var(--text-heading)'}
+          fill={isActive ? c.valueColor : 'rgb(var(--text-heading))'}
           fontSize={11}
           fontWeight="800"
           fontFamily="'JetBrains Mono', monospace"

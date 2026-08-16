@@ -94,10 +94,10 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
             x={CPU_X} y={10}
             width={520} height={310}
             rx={16}
-            fill="url(#cpuGrad)" stroke="var(--border-main)" strokeWidth={1.5}
+            fill="url(#cpuGrad)" stroke="rgb(var(--border-main))" strokeWidth={1.5}
             strokeDasharray="6 3"
           />
-          <text x={CPU_X + 16} y={30} fill="var(--accent-primary)" fontSize={11} fontWeight="800" letterSpacing={1}>
+          <text x={CPU_X + 16} y={30} fill="rgb(var(--accent-primary))" fontSize={11} fontWeight="800" letterSpacing={1}>
             CENTRAL PROCESSING UNIT (CPU)
           </text>
 
@@ -106,10 +106,10 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
             x={MEM_X - 10} y={10}
             width={MEM_W + 20} height={310}
             rx={16}
-            fill="url(#memGrad)" stroke="var(--border-main)" strokeWidth={1.5}
+            fill="url(#memGrad)" stroke="rgb(var(--border-main))" strokeWidth={1.5}
             strokeDasharray="6 3"
           />
-          <text x={MEM_X + 6} y={30} fill="var(--accent-emerald)" fontSize={11} fontWeight="800" letterSpacing={1}>
+          <text x={MEM_X + 6} y={30} fill="rgb(var(--accent-emerald))" fontSize={11} fontWeight="800" letterSpacing={1}>
             MAIN MEMORY (RAM - Unified)
           </text>
 
@@ -220,8 +220,8 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
                   x={MEM_X} y={cy}
                   width={MEM_W - 10} height={28}
                   rx={6}
-                  fill={isHit ? 'var(--card-surface)' : 'var(--card-bg)'}
-                  stroke={isHit ? 'var(--accent-primary)' : 'var(--border-subtle)'}
+                  fill={isHit ? 'rgb(var(--card-surface))' : 'rgb(var(--card-bg))'}
+                  stroke={isHit ? 'rgb(var(--accent-primary))' : 'rgb(var(--border-subtle))'}
                   strokeWidth={isHit ? 2 : 1}
                   className={isHit ? 'block-active' : ''}
                   style={{
@@ -231,7 +231,7 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
                 <text
                   x={MEM_X + 10} y={cy + 15}
                   dominantBaseline="middle"
-                  fill="var(--accent-primary)" fontSize={9}
+                  fill="rgb(var(--accent-primary))" fontSize={9}
                   fontWeight="700"
                   fontFamily="'JetBrains Mono', monospace"
                 >
@@ -240,7 +240,7 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
                 <text
                   x={MEM_X + 58} y={cy + 15}
                   dominantBaseline="middle"
-                  fill={isHit ? 'var(--accent-emerald)' : 'var(--text-heading)'}
+                  fill={isHit ? 'rgb(var(--accent-emerald))' : 'rgb(var(--text-heading))'}
                   fontSize={9}
                   fontWeight={isHit ? '800' : '600'}
                   fontFamily="'JetBrains Mono', monospace"
@@ -253,7 +253,7 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
                   x={MEM_X + MEM_W - 18} y={cy + 15}
                   dominantBaseline="middle"
                   textAnchor="end"
-                  fill={cell.type === 'INSTRUCTION' ? 'var(--accent-primary)' : 'var(--accent-amber)'}
+                  fill={cell.type === 'INSTRUCTION' ? 'rgb(var(--accent-primary))' : 'rgb(var(--accent-amber))'}
                   fontSize={8}
                   fontWeight="800"
                   fontFamily="'Plus Jakarta Sans', sans-serif"
@@ -266,18 +266,18 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
 
           {/* ════ INTERNAL CPU CONNECTIONS ════ */}
           <line x1={CPU_X + 75} y1={ROW1_Y + BLK_H} x2={CPU_X + 75} y2={ROW2_Y}
-            stroke="var(--border-main)" strokeWidth={1.5} strokeDasharray="3 3" />
+            stroke="rgb(var(--border-main))" strokeWidth={1.5} strokeDasharray="3 3" />
           <line x1={CPU_X + 215} y1={ROW1_Y + BLK_H} x2={CPU_X + 215} y2={ROW2_Y}
-            stroke="var(--border-main)" strokeWidth={1.5} strokeDasharray="3 3" />
+            stroke="rgb(var(--border-main))" strokeWidth={1.5} strokeDasharray="3 3" />
           <line x1={CPU_X + 75} y1={ROW2_Y + BLK_H} x2={CPU_X + 75} y2={ROW3_Y}
-            stroke="var(--border-main)" strokeWidth={1.5} strokeDasharray="3 3" />
+            stroke="rgb(var(--border-main))" strokeWidth={1.5} strokeDasharray="3 3" />
           <line x1={CPU_X + 215} y1={ROW3_Y + BLK_H} x2={CPU_X + 215} y2={ROW4_Y}
-            stroke="var(--border-main)" strokeWidth={1.5} strokeDasharray="3 3" />
+            stroke="rgb(var(--border-main))" strokeWidth={1.5} strokeDasharray="3 3" />
 
           {/* ════ SYSTEM BUSES ════ */}
 
           {/* ADDRESS BUS */}
-          <text x={BUS_X_START} y={BUS_ADDR_Y - 6} fill="var(--accent-amber)" fontSize={9} fontWeight="800" letterSpacing={0.5}>
+          <text x={BUS_X_START} y={BUS_ADDR_Y - 6} fill="rgb(var(--accent-amber))" fontSize={9} fontWeight="800" letterSpacing={0.5}>
             ADDRESS BUS (16-bit)
           </text>
           <AnimatedWire
@@ -291,7 +291,7 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
           />
 
           {/* DATA BUS */}
-          <text x={BUS_X_START} y={BUS_DATA_Y - 6} fill="var(--accent-primary)" fontSize={9} fontWeight="800" letterSpacing={0.5}>
+          <text x={BUS_X_START} y={BUS_DATA_Y - 6} fill="rgb(var(--accent-primary))" fontSize={9} fontWeight="800" letterSpacing={0.5}>
             DATA BUS (16-bit, bidirectional)
           </text>
           <AnimatedWire
@@ -305,7 +305,7 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
           />
 
           {/* CONTROL BUS */}
-          <text x={BUS_X_START} y={BUS_CTRL_Y - 6} fill="var(--accent-rose)" fontSize={9} fontWeight="800" letterSpacing={0.5}>
+          <text x={BUS_X_START} y={BUS_CTRL_Y - 6} fill="rgb(var(--accent-rose))" fontSize={9} fontWeight="800" letterSpacing={0.5}>
             CONTROL BUS (Signals)
           </text>
           <AnimatedWire
@@ -323,7 +323,7 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
           <line
             x1={CPU_X + 75} y1={ROW3_Y + BLK_H}
             x2={CPU_X + 75} y2={BUS_ADDR_Y}
-            stroke={bus === 'ADDRESS_BUS' ? 'var(--accent-amber)' : 'var(--border-subtle)'}
+            stroke={bus === 'ADDRESS_BUS' ? 'rgb(var(--accent-amber))' : 'rgb(var(--border-subtle))'}
             strokeWidth={bus === 'ADDRESS_BUS' ? 2 : 1}
             strokeDasharray={bus === 'ADDRESS_BUS' ? 'none' : '4 3'}
           />
@@ -331,21 +331,21 @@ export const VonNeumannDiagram: React.FC<VonNeumannDiagramProps> = ({
           <line
             x1={CPU_X + 215} y1={ROW3_Y + BLK_H}
             x2={CPU_X + 215} y2={BUS_DATA_Y}
-            stroke={bus === 'DATA_BUS' ? 'var(--accent-primary)' : 'var(--border-subtle)'}
+            stroke={bus === 'DATA_BUS' ? 'rgb(var(--accent-primary))' : 'rgb(var(--border-subtle))'}
             strokeWidth={bus === 'DATA_BUS' ? 2 : 1}
             strokeDasharray={bus === 'DATA_BUS' ? 'none' : '4 3'}
           />
 
           {/* Phase label */}
           <rect x={VB_W - 140} y={VB_H - 32} width={130} height={24} rx={6}
-            fill={step.bottleneckActive ? 'var(--accent-amber)' : 'var(--card-bg)'}
-            stroke={step.bottleneckActive ? 'var(--accent-amber)' : 'var(--accent-primary)'}
+            fill={step.bottleneckActive ? 'rgb(var(--accent-amber))' : 'rgb(var(--card-bg))'}
+            stroke={step.bottleneckActive ? 'rgb(var(--accent-amber))' : 'rgb(var(--accent-primary))'}
             strokeWidth={1.5}
           />
           <text
             x={VB_W - 75} y={VB_H - 16}
             textAnchor="middle" dominantBaseline="middle"
-            fill={step.bottleneckActive ? '#000' : 'var(--text-heading)'}
+            fill={step.bottleneckActive ? '#000' : 'rgb(var(--text-heading))'}
             fontSize={10} fontWeight="800"
           >
             {step.phase}{step.bottleneckActive ? ' ⚠ BOTTLENECK' : ''}

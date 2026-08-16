@@ -255,15 +255,15 @@ const RegisterFileCutaway: React.FC = () => {
 
           <div className="p-4 rounded-xl sub-panel border flex items-center justify-center">
             <svg viewBox="0 0 320 160" className="w-full h-auto">
-              <rect x="20" y="20" width="110" height="120" rx="8" fill="var(--card-bg)" stroke="var(--border-main)" strokeWidth="2" />
-              <text x="75" y="45" textAnchor="middle" fontSize="11" fontWeight="bold" fill="var(--text-heading)">Master Latch</text>
-              <text x="35" y="85" fontSize="10" fontFamily="monospace" fill="var(--accent-primary)">D In</text>
+              <rect x="20" y="20" width="110" height="120" rx="8" fill="rgb(var(--card-bg))" stroke="rgb(var(--border-main))" strokeWidth="2" />
+              <text x="75" y="45" textAnchor="middle" fontSize="11" fontWeight="bold" fill="rgb(var(--text-heading))">Master Latch</text>
+              <text x="35" y="85" fontSize="10" fontFamily="monospace" fill="rgb(var(--accent-primary))">D In</text>
 
-              <line x1="130" y1="80" x2="190" y2="80" stroke="var(--accent-primary)" strokeWidth="2" />
+              <line x1="130" y1="80" x2="190" y2="80" stroke="rgb(var(--accent-primary))" strokeWidth="2" />
 
-              <rect x="190" y="20" width="110" height="120" rx="8" fill="var(--card-bg)" stroke="var(--border-main)" strokeWidth="2" />
-              <text x="245" y="45" textAnchor="middle" fontSize="11" fontWeight="bold" fill="var(--text-heading)">Slave Latch</text>
-              <text x="280" y="85" fontSize="10" fontFamily="monospace" fill="var(--accent-emerald)">Q Out</text>
+              <rect x="190" y="20" width="110" height="120" rx="8" fill="rgb(var(--card-bg))" stroke="rgb(var(--border-main))" strokeWidth="2" />
+              <text x="245" y="45" textAnchor="middle" fontSize="11" fontWeight="bold" fill="rgb(var(--text-heading))">Slave Latch</text>
+              <text x="280" y="85" fontSize="10" fontFamily="monospace" fill="rgb(var(--accent-emerald))">Q Out</text>
             </svg>
           </div>
         </div>
@@ -407,14 +407,14 @@ const SRAMCellCutaway: React.FC = () => {
           </div>
           <div className="p-4 rounded-xl sub-panel border flex items-center justify-center">
             <svg viewBox="0 0 240 140" className="w-full h-auto">
-              <rect x="20" y="30" width="80" height="80" rx="8" fill="var(--card-bg)" stroke="var(--border-main)" strokeWidth="2" />
-              <text x="60" y="75" textAnchor="middle" fontSize="11" fontWeight="bold" fill="var(--text-heading)">INV 1 (Q)</text>
+              <rect x="20" y="30" width="80" height="80" rx="8" fill="rgb(var(--card-bg))" stroke="rgb(var(--border-main))" strokeWidth="2" />
+              <text x="60" y="75" textAnchor="middle" fontSize="11" fontWeight="bold" fill="rgb(var(--text-heading))">INV 1 (Q)</text>
 
-              <rect x="140" y="30" width="80" height="80" rx="8" fill="var(--card-bg)" stroke="var(--border-main)" strokeWidth="2" />
-              <text x="180" y="75" textAnchor="middle" fontSize="11" fontWeight="bold" fill="var(--text-heading)">INV 2 (~Q)</text>
+              <rect x="140" y="30" width="80" height="80" rx="8" fill="rgb(var(--card-bg))" stroke="rgb(var(--border-main))" strokeWidth="2" />
+              <text x="180" y="75" textAnchor="middle" fontSize="11" fontWeight="bold" fill="rgb(var(--text-heading))">INV 2 (~Q)</text>
 
-              <path d="M 100 50 L 140 50" stroke="var(--accent-primary)" strokeWidth="2" markerEnd="url(#arrow)" />
-              <path d="M 140 90 L 100 90" stroke="var(--accent-secondary)" strokeWidth="2" markerEnd="url(#arrow)" />
+              <path d="M 100 50 L 140 50" stroke="rgb(var(--accent-primary))" strokeWidth="2" markerEnd="url(#arrow)" />
+              <path d="M 140 90 L 100 90" stroke="rgb(var(--accent-secondary))" strokeWidth="2" markerEnd="url(#arrow)" />
             </svg>
           </div>
         </div>

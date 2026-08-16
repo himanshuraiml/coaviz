@@ -207,10 +207,10 @@ export const PipelineSimulator: React.FC = () => {
             <button
               key={idx}
               onClick={() => handlePresetChange(idx)}
-              className={`px-3 py-1 rounded-xl text-xs font-bold border transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                 selectedPresetIndex === idx
-                  ? 'bg-accent-primary text-white shadow-sm'
-                  : 'bg-card-surface border-border-main text-text-body hover:border-accent-primary hover:bg-card-subtle'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500 shadow-sm font-black'
+                  : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
               }`}
             >
               {preset.name.split(' ')[0]} {preset.name.split(' ')[1]}
@@ -223,19 +223,19 @@ export const PipelineSimulator: React.FC = () => {
           {/* Comparative Mode Button */}
           <button
             onClick={() => setIsComparativeView(!isComparativeView)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
               isComparativeView
-                ? 'bg-accent-secondary text-white border-accent-secondary shadow-sm'
-                : 'bg-card-surface border-border-main text-text-body hover:border-accent-secondary'
+                ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm font-black'
+                : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-xs'
             }`}
           >
-            <SplitSquareVertical className="w-3.5 h-3.5" />
+            <SplitSquareVertical className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
             <span>Comparative View</span>
           </button>
 
           <button
             onClick={() => setXrayType('PIPELINE_LATCH')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-accent-primary/10 hover:bg-accent-primary/20 text-accent-primary border border-accent-primary/30 transition-all shadow-sm active:scale-95"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-cyan-50 dark:bg-cyan-950/50 hover:bg-cyan-100 dark:hover:bg-cyan-900/50 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800 transition-all shadow-sm active:scale-95 cursor-pointer"
           >
             <ZoomIn className="w-3.5 h-3.5" />
             <span>IF/ID Latch X-Ray</span>
@@ -247,10 +247,10 @@ export const PipelineSimulator: React.FC = () => {
               setEnableForwarding(!enableForwarding);
               setCurrentCycleIndex(0);
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
               enableForwarding
-                ? 'bg-accent-emerald text-white shadow-sm'
-                : 'bg-accent-rose/15 text-accent-rose border border-accent-rose/40 hover:bg-accent-rose/25'
+                ? 'bg-emerald-600 dark:bg-emerald-500 text-white border-emerald-600 dark:border-emerald-500 shadow-sm font-black'
+                : 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/40 shadow-xs'
             }`}
           >
             <Zap className="w-3.5 h-3.5" />
@@ -264,13 +264,13 @@ export const PipelineSimulator: React.FC = () => {
                 setBranchOutcomeTaken(!branchOutcomeTaken);
                 setCurrentCycleIndex(0);
               }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                 branchOutcomeTaken
-                  ? 'bg-accent-amber/15 text-accent-amber border-accent-amber/40'
-                  : 'bg-card-surface border-border-main text-text-muted'
+                  ? 'bg-amber-500 dark:bg-amber-600 text-white border-amber-500 dark:border-amber-600 shadow-sm font-black'
+                  : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 shadow-xs'
               }`}
             >
-              <Repeat className="w-3.5 h-3.5" />
+              <Repeat className="w-3.5 h-3.5 text-amber-500" />
               <span>Branch BEQ: {branchOutcomeTaken ? 'TAKEN (Flush)' : 'NOT TAKEN'}</span>
             </button>
           )}

@@ -166,7 +166,7 @@ export const CacheReplacementSimulator: React.FC = () => {
       {/* Top Configuration & Presets */}
       <div className="bg-card-bg border border-border-main rounded-2xl p-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-sm">
         {/* Policy Switcher */}
-        <div className="flex items-center gap-1.5 bg-card-surface p-1 rounded-xl border border-border-main">
+        <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
           {(['LRU', 'FIFO', 'LFU'] as ReplacementPolicy[]).map((p) => (
             <button
               key={p}
@@ -175,10 +175,10 @@ export const CacheReplacementSimulator: React.FC = () => {
                 setCurrentStepIndex(0);
                 setIsPlaying(false);
               }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 policy === p
-                  ? 'bg-accent-primary text-white shadow-sm'
-                  : 'text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm font-black'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
               }`}
             >
               {p} Policy
@@ -230,10 +230,10 @@ export const CacheReplacementSimulator: React.FC = () => {
           <button
             key={idx}
             onClick={() => handlePresetSelect(idx)}
-            className={`px-2.5 py-1 rounded-xl text-xs font-bold border transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
               selectedPresetIndex === idx
-                ? 'bg-accent-secondary text-white shadow-sm'
-                : 'bg-card-surface border border-border-main text-text-body hover:border-accent-secondary hover:bg-card-subtle'
+                ? 'bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500 shadow-sm font-black'
+                : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
             }`}
           >
             {p.name.split(' ')[0]} {p.name.split(' ')[1]}

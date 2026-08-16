@@ -69,25 +69,31 @@ export const ControllerBar: React.FC<ControllerBarProps> = ({
           )}
         </div>
 
-        {/* Speed Controls */}
-        <div className="flex items-center gap-1.5 bg-card-surface p-1 rounded-xl border border-border-main text-xs self-end sm:self-auto shadow-sm">
-          <div className="flex items-center gap-1 px-1.5 text-[11px] font-bold text-text-muted">
-            <Gauge className="w-3.5 h-3.5 text-accent-primary" />
+        {/* Speed Controls Segmented Switcher */}
+        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/90 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs self-end sm:self-auto shadow-sm">
+          <div className="flex items-center gap-1 px-1.5 text-[11px] font-black text-slate-600 dark:text-slate-400">
+            <Gauge className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
             <span className="hidden sm:inline">Speed:</span>
           </div>
-          {speeds.map((s) => (
-            <button
-              key={s}
-              onClick={() => onChangeSpeed(s)}
-              className={`px-2 py-0.5 rounded-lg font-mono text-xs transition-all ${
-                speed === s
-                  ? 'font-black bg-accent-primary text-white shadow-sm'
-                  : 'font-bold text-text-muted hover:text-text-heading hover:bg-card-subtle'
-              }`}
-            >
-              {s}x
-            </button>
-          ))}
+          <div className="flex items-center gap-1 bg-slate-200/70 dark:bg-slate-900/80 p-0.5 rounded-xl border border-slate-200/90 dark:border-slate-800">
+            {speeds.map((s) => {
+              const isSelected = Math.abs(speed - s) < 0.01;
+              return (
+                <button
+                  key={s}
+                  onClick={() => onChangeSpeed(s)}
+                  className={`px-2.5 py-1 rounded-lg font-mono text-xs transition-all duration-200 ease-out cursor-pointer ${
+                    isSelected
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black shadow-md shadow-blue-500/30 ring-2 ring-blue-400/50 scale-105 z-10'
+                      : 'text-slate-700 dark:text-slate-300 font-bold hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/80 active:scale-95'
+                  }`}
+                  title={`Set animation speed to ${s}x`}
+                >
+                  {s}x
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

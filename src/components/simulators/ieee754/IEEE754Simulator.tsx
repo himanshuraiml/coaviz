@@ -137,17 +137,17 @@ export const IEEE754Simulator: React.FC = () => {
       {/* Control & Precision Selector Header */}
       <div className="bg-card-bg border border-border-main rounded-2xl p-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-sm">
         {/* Precision Toggle */}
-        <div className="flex items-center gap-1.5 bg-card-surface p-1 rounded-xl border border-border-main">
+        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
           <button
             onClick={() => {
               setPrecision('single');
               const num = parseFloat(decimalInput) || 13.625;
               setBits(floatToSingleIEEE754(num).fullBinary);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
               isSingle
-                ? 'bg-accent-primary text-white shadow-sm'
-                : 'text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm font-black'
+                : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
             }`}
           >
             Single Precision (32-bit)
@@ -158,10 +158,10 @@ export const IEEE754Simulator: React.FC = () => {
               const num = parseFloat(decimalInput) || 13.625;
               setBits(floatToDoubleIEEE754(num).fullBinary);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
               !isSingle
-                ? 'bg-accent-primary text-white shadow-sm'
-                : 'text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm font-black'
+                : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
             }`}
           >
             Double Precision (64-bit)
@@ -177,7 +177,7 @@ export const IEEE754Simulator: React.FC = () => {
             <button
               key={idx}
               onClick={() => applyPreset(p)}
-              className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-card-surface border border-border-main hover:border-accent-primary text-text-body transition-colors"
+              className="px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 hover:border-blue-500 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-xs cursor-pointer"
             >
               {p.label}
             </button>

@@ -4,25 +4,25 @@
 
 @layer base {
   :root, html.light, html:not(.dark) {
-    --canvas-bg: #f8fafc;
-    --card-bg: #ffffff;
-    --card-surface: #f1f5f9;
-    --card-subtle: #e2e8f0;
-    --border-main: #e2e8f0;
-    --border-subtle: #cbd5e1;
+    --canvas-bg: 248 250 252;
+    --card-bg: 255 255 255;
+    --card-surface: 241 245 249;
+    --card-subtle: 226 232 240;
+    --border-main: 226 232 240;
+    --border-subtle: 203 213 225;
     
     /* High-Readability Contrast Text in Light Mode (Deep Charcoal Navy) */
-    --text-heading: #0f172a;
-    --text-body: #334155;
-    --text-muted: #64748b;
-    --text-faint: #94a3b8;
+    --text-heading: 15 23 42;
+    --text-body: 51 65 85;
+    --text-muted: 100 116 139;
+    --text-faint: 148 163 184;
     
     /* Accents */
-    --accent-primary: #0284c7;
-    --accent-secondary: #4f46e5;
-    --accent-emerald: #059669;
-    --accent-amber: #d97706;
-    --accent-rose: #dc2626;
+    --accent-primary: 2 132 199;
+    --accent-secondary: 79 70 229;
+    --accent-emerald: 5 150 105;
+    --accent-amber: 217 119 6;
+    --accent-rose: 220 38 38;
 
     --shadow-elevation: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
     --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.15);
@@ -41,25 +41,25 @@
   }
 
   html.dark, .dark {
-    --canvas-bg: #090d16;
-    --card-bg: #0f172a;
-    --card-surface: #162032;
-    --card-subtle: #1e293b;
-    --border-main: #334155;
-    --border-subtle: #1e293b;
+    --canvas-bg: 0 0 0;
+    --card-bg: 15 23 42;
+    --card-surface: 22 32 50;
+    --card-subtle: 30 41 59;
+    --border-main: 51 65 85;
+    --border-subtle: 30 41 59;
     
     /* High-Readability Contrast Text in Dark Mode (Pure Bright White / Ice Slate) */
-    --text-heading: #ffffff;
-    --text-body: #f8fafc;
-    --text-muted: #cbd5e1;
-    --text-faint: #94a3b8;
+    --text-heading: 255 255 255;
+    --text-body: 248 250 252;
+    --text-muted: 203 213 225;
+    --text-faint: 148 163 184;
     
     /* Accents */
-    --accent-primary: #38bdf8;
-    --accent-secondary: #818cf8;
-    --accent-emerald: #34d399;
-    --accent-amber: #fbbf24;
-    --accent-rose: #fb7185;
+    --accent-primary: 56 189 248;
+    --accent-secondary: 129 140 248;
+    --accent-emerald: 52 211 153;
+    --accent-amber: 251 191 36;
+    --accent-rose: 251 113 133;
 
     --shadow-elevation: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.08);
     --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.25);
@@ -67,7 +67,7 @@
     --wire-active: #38bdf8;
 
     /* Smartboard tokens for backward compatibility */
-    --bg-primary: #090d16;
+    --bg-primary: #000000;
     --bg-secondary: #162032;
     --bg-card: #0f172a;
     --border-color: #334155;
@@ -78,30 +78,35 @@
   }
 
   html, body, #root {
-    background-color: var(--canvas-bg) !important;
-    background-image: radial-gradient(var(--border-main) 1px, transparent 1px);
+    background-color: rgb(var(--canvas-bg)) !important;
+    background-image: radial-gradient(rgb(var(--border-main)) 1px, transparent 1px);
     background-size: 24px 24px;
     background-position: -19px -19px;
-    color: var(--text-body);
+    color: rgb(var(--text-body));
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     transition: background-color 0.25s ease, color 0.25s ease;
     letter-spacing: -0.015em;
   }
 
+  html.dark, html.dark body, html.dark #root, .dark, .dark body, .dark #root {
+    background-color: #000000 !important;
+    background-image: none !important;
+  }
+
   /* Input, Select, Option Global Theming Defaults */
   input, select, textarea {
-    background-color: var(--card-bg);
-    color: var(--text-heading);
-    border-color: var(--border-main);
+    background-color: rgb(var(--card-bg));
+    color: rgb(var(--text-heading));
+    border-color: rgb(var(--border-main));
   }
 
   option {
-    background-color: var(--card-bg);
-    color: var(--text-heading);
+    background-color: rgb(var(--card-bg));
+    color: rgb(var(--text-heading));
   }
 
   input::placeholder, textarea::placeholder {
-    color: var(--text-muted);
+    color: rgb(var(--text-muted));
     opacity: 0.8;
   }
 
@@ -122,7 +127,7 @@
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-primary);
+    background: rgb(var(--accent-primary));
   }
 }
 
@@ -131,8 +136,8 @@
 /* ========================================================= */
 
 .panel-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-main);
+  background-color: rgb(var(--card-bg));
+  border: 1px solid rgb(var(--border-main));
   box-shadow: var(--shadow-elevation);
   border-radius: 1rem;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -143,15 +148,15 @@
 }
 
 .sub-panel {
-  background-color: var(--card-surface);
-  border: 1px solid var(--border-subtle);
+  background-color: rgb(var(--card-surface));
+  border: 1px solid rgb(var(--border-subtle));
   border-radius: 0.75rem;
 }
 
 .input-box {
-  background-color: var(--card-bg);
-  border: 1.5px solid var(--border-main);
-  color: var(--text-heading);
+  background-color: rgb(var(--card-bg));
+  border: 1.5px solid rgb(var(--border-main));
+  color: rgb(var(--text-heading));
   border-radius: 0.75rem;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 600;
@@ -160,21 +165,21 @@
 
 .input-box:focus {
   outline: none;
-  border-color: var(--accent-primary);
+  border-color: rgb(var(--accent-primary));
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
 }
 
 /* Glass panel styled cleanly in light & dark */
 .glass-panel {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-main);
+  background-color: rgb(var(--card-bg));
+  border: 1px solid rgb(var(--border-main));
   box-shadow: var(--shadow-elevation);
   backdrop-filter: blur(12px);
 }
 
 .diagram-panel {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-main);
+  background-color: rgb(var(--card-bg));
+  border: 1px solid rgb(var(--border-main));
   border-radius: 1rem;
   box-shadow: var(--shadow-elevation);
 }

@@ -151,23 +151,23 @@ export const DMASimulator: React.FC = () => {
       <div className="bg-card-bg border border-border-main rounded-2xl p-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-sm">
         {/* Mode Selector */}
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-1.5 bg-card-surface p-1 rounded-xl border border-border-main">
+          <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
             <button
               onClick={() => setMode('BURST_MODE')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 mode === 'BURST_MODE'
-                  ? 'bg-accent-primary text-white shadow-sm'
-                  : 'text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm font-black'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
               }`}
             >
               Burst Mode
             </button>
             <button
               onClick={() => setMode('CYCLE_STEALING')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 mode === 'CYCLE_STEALING'
-                  ? 'bg-accent-amber text-slate-950 font-black shadow-sm'
-                  : 'text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                  ? 'bg-amber-500 dark:bg-amber-600 text-white shadow-sm font-black'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
               }`}
             >
               Cycle Stealing
@@ -175,24 +175,24 @@ export const DMASimulator: React.FC = () => {
           </div>
 
           {/* Direction */}
-          <div className="flex items-center gap-1.5 bg-card-surface p-1 rounded-xl border border-border-main">
-            <ArrowRightLeft className="w-3.5 h-3.5 text-accent-emerald ml-1.5" />
+          <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
+            <ArrowRightLeft className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 ml-1.5" />
             <button
               onClick={() => setDirection('DEVICE_TO_MEMORY')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 direction === 'DEVICE_TO_MEMORY'
-                  ? 'bg-accent-emerald/20 text-accent-emerald border border-accent-emerald/40 font-black'
-                  : 'text-text-muted hover:text-text-heading'
+                  ? 'bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm font-black'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
               }`}
             >
               Device ➔ RAM
             </button>
             <button
               onClick={() => setDirection('MEMORY_TO_DEVICE')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 direction === 'MEMORY_TO_DEVICE'
-                  ? 'bg-accent-emerald/20 text-accent-emerald border border-accent-emerald/40 font-black'
-                  : 'text-text-muted hover:text-text-heading'
+                  ? 'bg-emerald-600 dark:bg-emerald-500 text-white shadow-sm font-black'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
               }`}
             >
               RAM ➔ Device

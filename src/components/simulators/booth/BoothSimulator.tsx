@@ -187,10 +187,10 @@ export const BoothSimulator: React.FC = () => {
                 setCurrentStep(0);
                 setIsPlaying(false);
               }}
-              className={`px-3 py-1 rounded-xl text-xs font-bold font-mono transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold font-mono border transition-all cursor-pointer ${
                 multiplicand === p.m && multiplier === p.q
-                  ? 'bg-accent-primary text-white shadow-sm'
-                  : 'bg-card-surface border border-border-main text-text-body hover:border-accent-primary hover:bg-card-subtle'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500 shadow-sm font-black'
+                  : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
               }`}
             >
               {p.label}
@@ -203,13 +203,13 @@ export const BoothSimulator: React.FC = () => {
           {/* Practice Mode Toggle */}
           <button
             onClick={() => setIsPracticeMode(!isPracticeMode)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
               isPracticeMode
-                ? 'bg-indigo-500 text-white border-indigo-600 shadow-sm'
-                : 'bg-card-surface border-border-main text-text-body hover:border-indigo-500'
+                ? 'bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500 shadow-sm font-black'
+                : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-xs'
             }`}
           >
-            <HelpCircle className="w-3.5 h-3.5" />
+            <HelpCircle className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
             <span>Practice Mode</span>
           </button>
 

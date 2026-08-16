@@ -84,18 +84,18 @@ export const ControlUnitSimulator: React.FC = () => {
     <div className="flex flex-col gap-5 w-full max-w-7xl mx-auto">
       {/* Architecture Toggle & Opcode Selector */}
       <div className="panel-card p-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
-        {/* Mode Switcher */}
-        <div className="flex items-center gap-1.5 sub-panel p-1 border">
+        {/* CU Architecture Switcher */}
+        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
           <button
             onClick={() => {
               setCuMode('HARDWIRED');
               setCurrentStepIndex(0);
               setIsPlaying(false);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
               cuMode === 'HARDWIRED'
-                ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-md shadow-cyan-500/20'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm font-black'
+                : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
             }`}
           >
             <Zap className="w-3.5 h-3.5" />
@@ -108,10 +108,10 @@ export const ControlUnitSimulator: React.FC = () => {
               setCurrentStepIndex(0);
               setIsPlaying(false);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
               cuMode === 'MICROPROGRAMMED'
-                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/20'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                ? 'bg-indigo-600 dark:bg-indigo-500 text-white shadow-sm font-black'
+                : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
             }`}
           >
             <HardDrive className="w-3.5 h-3.5" />
@@ -131,10 +131,10 @@ export const ControlUnitSimulator: React.FC = () => {
                   setCurrentStepIndex(0);
                   setIsPlaying(false);
                 }}
-                className={`px-2.5 py-1 rounded-xl text-xs font-bold font-mono transition-all ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold font-mono border transition-all cursor-pointer ${
                   opcode === op
-                    ? 'bg-cyan-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-md shadow-cyan-500/20'
-                    : 'sub-panel border text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white'
+                    ? 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500 shadow-sm font-black'
+                    : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
                 }`}
               >
                 {op}
@@ -148,10 +148,10 @@ export const ControlUnitSimulator: React.FC = () => {
               setCurrentStepIndex(0);
               setIsPlaying(false);
             }}
-            className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
               isIndirect
-                ? 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/50'
-                : 'sub-panel border text-slate-700 dark:text-slate-300'
+                ? 'bg-amber-500 dark:bg-amber-600 text-white border-amber-500 dark:border-amber-600 shadow-sm font-black'
+                : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 shadow-xs'
             }`}
           >
             Addressing: {isIndirect ? 'Indirect (I = 1)' : 'Direct (I = 0)'}

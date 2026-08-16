@@ -1,8 +1,10 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import { Header, SimulatorTab } from './components/shell/Header.tsx';
 import { WhiteboardOverlay } from './components/shell/WhiteboardOverlay.tsx';
 import { HelpModal } from './components/shell/HelpModal.tsx';
 import { KeyboardShortcutsModal } from './components/shell/KeyboardShortcutsModal.tsx';
+import { ErrorBoundary } from './components/shell/ErrorBoundary.tsx';
+import { UpdateBanner } from './components/shell/UpdateBanner.tsx';
 import { usePersistentState } from './hooks/usePersistentState.ts';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts.ts';
 import { Cpu, Loader2 } from 'lucide-react';
@@ -64,6 +66,46 @@ const LMSViewer = lazy(() =>
   import('./components/lms/LMSViewer.tsx').then((m) => ({ default: m.LMSViewer }))
 );
 
+// Valid Simulator Tabs
+const VALID_TABS: SimulatorTab[] = [
+  'lms', 'booth', 'ieee754', 'division', 'numberSystem',
+  'vonNeumann', 'datapath', 'addressing',
+  'pipeline', 'controlUnit',
+  'cacheMapping', 'cacheReplacement', 'virtualMemory',
+  'ioTransfer', 'dma',
+];
+
+// Helper to map URL hash path to SimulatorTab
+function hashToTab(hash: string): SimulatorTab | null {
+  const clean = hash.replace(/^#\/?/, '').trim().toLowerCase();
+  const map: Record<string, SimulatorTab> = {
+    'lms': 'lms',
+    'booth': 'booth',
+    'ieee754': 'ieee754',
+    'ieee-754': 'ieee754',
+    'division': 'division',
+    'numbersystem': 'numberSystem',
+    'number-system': 'numberSystem',
+    'vonneumann': 'vonNeumann',
+    'von-neumann': 'vonNeumann',
+    'datapath': 'datapath',
+    'addressing': 'addressing',
+    'pipeline': 'pipeline',
+    'controlunit': 'controlUnit',
+    'control-unit': 'controlUnit',
+    'cachemapping': 'cacheMapping',
+    'cache-mapping': 'cacheMapping',
+    'cachereplacement': 'cacheReplacement',
+    'cache-replacement': 'cacheReplacement',
+    'virtualmemory': 'virtualMemory',
+    'virtual-memory': 'virtualMemory',
+    'iotransfer': 'ioTransfer',
+    'io-transfer': 'ioTransfer',
+    'dma': 'dma',
+  };
+  return map[clean] || (VALID_TABS.includes(clean as SimulatorTab) ? (clean as SimulatorTab) : null);
+}
+
 // Sleek Skeleton Loading Fallback
 const SimulatorLoadingFallback: React.FC = () => (
   <div className="flex-1 flex flex-col items-center justify-center min-h-[400px] p-8 text-center animate-fadeIn">
@@ -83,13 +125,46 @@ const SimulatorLoadingFallback: React.FC = () => (
 );
 
 export const App: React.FC = () => {
-  // Persistent active tab & theme state
-  const [activeTab, setActiveTab] = usePersistentState<SimulatorTab>('activeTab', 'vonNeumann');
+  // Initial tab resolution from URL hash or persistent state
+  const initialHashTab = typeof window !== 'undefined' ? hashToTab(window.location.hash) : null;
+  const [activeTab, setActiveTabState] = usePersistentState<SimulatorTab>(
+    'activeTab',
+    initialHashTab || 'vonNeumann'
+  );
+
   const [isDark, setIsDark] = usePersistentState<boolean>('isDark', false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [isWhiteboardOpen, setIsWhiteboardOpen] = useState<boolean>(false);
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
   const [isShortcutsOpen, setIsShortcutsOpen] = useState<boolean>(false);
+  const [errorResetKey, setErrorResetKey] = useState<number>(0);
+
+  // Tab switch handler with URL hash sync
+  const handleSelectTab = useCallback((tab: SimulatorTab) => {
+    setActiveTabState(tab);
+    if (window.location.hash !== `#/${tab}`) {
+      window.history.pushState(null, '', `#/${tab}`);
+    }
+  }, [setActiveTabState]);
+
+  // Sync state when URL hash changes (browser back/forward or external deep links)
+  useEffect(() => {
+    const onHashChange = () => {
+      const target = hashToTab(window.location.hash);
+      if (target && target !== activeTab) {
+        setActiveTabState(target);
+      }
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, [activeTab, setActiveTabState]);
+
+  // Initial hash sync on mount
+  useEffect(() => {
+    if (!window.location.hash && activeTab) {
+      window.history.replaceState(null, '', `#/${activeTab}`);
+    }
+  }, [activeTab]);
 
   // Sync theme with HTML root class
   useEffect(() => {
@@ -147,7 +222,7 @@ export const App: React.FC = () => {
       {/* Presentation Header Bar */}
       <Header
         activeTab={activeTab}
-        onSelectTab={setActiveTab}
+        onSelectTab={handleSelectTab}
         isDark={isDark}
         onToggleTheme={() => setIsDark(!isDark)}
         isFullscreen={isFullscreen}
@@ -158,43 +233,50 @@ export const App: React.FC = () => {
         onOpenShortcuts={() => setIsShortcutsOpen(true)}
       />
 
-      {/* Main Simulator & LMS Workspace with Suspense */}
+      {/* Main Simulator & LMS Workspace with Error Isolation and Suspense */}
       <main className="flex-1 p-4 md:p-6 relative z-10 flex flex-col max-w-7xl mx-auto w-full">
-        <Suspense fallback={<SimulatorLoadingFallback />}>
-          {/* LMS Course Hub */}
-          {activeTab === 'lms' && <LMSViewer onLaunchSimulator={(tab) => setActiveTab(tab)} />}
+        <ErrorBoundary
+          key={`${activeTab}_${errorResetKey}`}
+          onReset={() => setErrorResetKey((k) => k + 1)}
+        >
+          <Suspense fallback={<SimulatorLoadingFallback />}>
+            {/* LMS Course Hub */}
+            {activeTab === 'lms' && <LMSViewer onLaunchSimulator={(tab) => handleSelectTab(tab)} />}
 
-          {/* Unit 1 */}
-          {activeTab === 'booth' && <BoothSimulator />}
-          {activeTab === 'ieee754' && <IEEE754Simulator />}
-          {activeTab === 'division' && <DivisionSimulator />}
-          {activeTab === 'numberSystem' && <NumberSystemSandbox />}
+            {/* Unit 1 */}
+            {activeTab === 'booth' && <BoothSimulator />}
+            {activeTab === 'ieee754' && <IEEE754Simulator />}
+            {activeTab === 'division' && <DivisionSimulator />}
+            {activeTab === 'numberSystem' && <NumberSystemSandbox />}
 
-          {/* Unit 2 */}
-          {activeTab === 'vonNeumann' && <VonNeumannSimulator />}
-          {activeTab === 'datapath' && <DatapathSimulator />}
-          {activeTab === 'addressing' && <AddressingSimulator />}
+            {/* Unit 2 */}
+            {activeTab === 'vonNeumann' && <VonNeumannSimulator />}
+            {activeTab === 'datapath' && <DatapathSimulator />}
+            {activeTab === 'addressing' && <AddressingSimulator />}
 
-          {/* Unit 3 */}
-          {activeTab === 'pipeline' && <PipelineSimulator />}
-          {activeTab === 'controlUnit' && <ControlUnitSimulator />}
+            {/* Unit 3 */}
+            {activeTab === 'pipeline' && <PipelineSimulator />}
+            {activeTab === 'controlUnit' && <ControlUnitSimulator />}
 
-          {/* Unit 4 */}
-          {activeTab === 'cacheMapping' && <CacheMappingSimulator />}
-          {activeTab === 'cacheReplacement' && <CacheReplacementSimulator />}
-          {activeTab === 'virtualMemory' && <VirtualMemorySimulator />}
+            {/* Unit 4 */}
+            {activeTab === 'cacheMapping' && <CacheMappingSimulator />}
+            {activeTab === 'cacheReplacement' && <CacheReplacementSimulator />}
+            {activeTab === 'virtualMemory' && <VirtualMemorySimulator />}
 
-          {/* Unit 5 */}
-          {activeTab === 'ioTransfer' && <IOTransferSimulator />}
-          {activeTab === 'dma' && <DMASimulator />}
-        </Suspense>
+            {/* Unit 5 */}
+            {activeTab === 'ioTransfer' && <IOTransferSimulator />}
+            {activeTab === 'dma' && <DMASimulator />}
+          </Suspense>
+        </ErrorBoundary>
       </main>
 
       {/* Interactive Smartboard Whiteboard Overlay */}
-      <WhiteboardOverlay
-        isOpen={isWhiteboardOpen}
-        onClose={() => setIsWhiteboardOpen(false)}
-      />
+      <ErrorBoundary onReset={() => setIsWhiteboardOpen(false)}>
+        <WhiteboardOverlay
+          isOpen={isWhiteboardOpen}
+          onClose={() => setIsWhiteboardOpen(false)}
+        />
+      </ErrorBoundary>
 
       {/* Help Modal Guide */}
       <HelpModal
@@ -207,8 +289,12 @@ export const App: React.FC = () => {
         isOpen={isShortcutsOpen}
         onClose={() => setIsShortcutsOpen(false)}
       />
+
+      {/* Desktop Auto-Update Notification Banner */}
+      <UpdateBanner />
     </div>
   );
 };
 
 export default App;
+

@@ -191,7 +191,7 @@ export const CacheMappingSimulator: React.FC = () => {
       {/* Top Configuration & Presets Header */}
       <div className="bg-card-bg border border-border-main rounded-2xl p-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-sm">
         {/* Mapping Scheme Switcher */}
-        <div className="flex flex-wrap items-center gap-1.5 bg-card-surface p-1 rounded-xl border border-border-main">
+        <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
           {[
             { id: 'DIRECT' as MappingType, label: 'Direct' },
             { id: 'SET_ASSOCIATIVE_2WAY' as MappingType, label: '2-Way Set' },
@@ -204,10 +204,10 @@ export const CacheMappingSimulator: React.FC = () => {
                 setMappingType(m.id);
                 setCurrentStepIndex(0);
               }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 mappingType === m.id
-                  ? 'bg-accent-primary text-white shadow-sm'
-                  : 'text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-sm font-black'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800'
               }`}
             >
               {m.label}
@@ -220,20 +220,20 @@ export const CacheMappingSimulator: React.FC = () => {
           {/* Comparative Mode Button */}
           <button
             onClick={() => setIsComparativeView(!isComparativeView)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
               isComparativeView
-                ? 'bg-accent-secondary text-white border-accent-secondary shadow-sm'
-                : 'bg-card-surface border-border-main text-text-body hover:border-accent-secondary'
+                ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm font-black'
+                : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-700 shadow-xs'
             }`}
           >
-            <SplitSquareVertical className="w-3.5 h-3.5" />
+            <SplitSquareVertical className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
             <span>Comparative View</span>
           </button>
 
           {/* X-Ray Cutaway Buttons */}
           <button
             onClick={() => setXrayType('CACHE_TAG_COMPARATOR')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-accent-primary/10 hover:bg-accent-primary/20 text-accent-primary border border-accent-primary/30 transition-all shadow-sm active:scale-95"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-cyan-50 dark:bg-cyan-950/50 hover:bg-cyan-100 dark:hover:bg-cyan-900/50 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800 transition-all shadow-sm active:scale-95 cursor-pointer"
           >
             <ZoomIn className="w-3.5 h-3.5" />
             <span>Tag Comparator</span>
@@ -241,7 +241,7 @@ export const CacheMappingSimulator: React.FC = () => {
 
           <button
             onClick={() => setXrayType('SRAM_CELL')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-accent-secondary/10 hover:bg-accent-secondary/20 text-accent-secondary border border-accent-secondary/30 transition-all shadow-sm active:scale-95"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-50 dark:bg-indigo-950/50 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 transition-all shadow-sm active:scale-95 cursor-pointer"
           >
             <Database className="w-3.5 h-3.5" />
             <span>6T SRAM</span>
@@ -263,7 +263,7 @@ export const CacheMappingSimulator: React.FC = () => {
           <button
             onClick={handleCommitToCache}
             title="Update cache contents after miss/hit"
-            className="px-3 py-1.5 rounded-xl text-xs font-bold bg-accent-emerald/15 text-accent-emerald border border-accent-emerald/40 hover:bg-accent-emerald/25 transition-all shadow-sm"
+            className="px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-all shadow-sm cursor-pointer"
           >
             Update Slot
           </button>
@@ -271,7 +271,7 @@ export const CacheMappingSimulator: React.FC = () => {
           <button
             onClick={handleClearCache}
             title="Flush entire cache to empty"
-            className="px-3 py-1.5 rounded-xl text-xs font-bold bg-accent-rose/15 text-accent-rose border border-accent-rose/40 hover:bg-accent-rose/25 transition-all shadow-sm"
+            className="px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 hover:bg-rose-100 dark:hover:bg-rose-900/40 transition-all shadow-sm cursor-pointer"
           >
             Clear
           </button>
@@ -295,10 +295,10 @@ export const CacheMappingSimulator: React.FC = () => {
           <button
             key={idx}
             onClick={() => handleApplyAddress(p.addr)}
-            className={`px-2.5 py-1 rounded-xl text-xs font-mono font-bold transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold border transition-all cursor-pointer ${
               addressInput === p.addr
-                ? 'bg-accent-secondary text-white shadow-sm'
-                : 'bg-card-surface border border-border-main text-text-body hover:border-accent-primary hover:bg-card-subtle'
+                ? 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500 shadow-sm font-black'
+                : 'bg-white dark:bg-slate-800/90 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
             }`}
           >
             {p.label}

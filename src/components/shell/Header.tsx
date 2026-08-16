@@ -300,18 +300,18 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Sub-Header Horizontal Unit Bar */}
-      <div className="px-4 sm:px-6 py-1.5 bg-card-surface/80 border-t border-border-main flex items-center justify-between gap-3 overflow-x-auto">
-        <div className="flex items-center gap-1.5">
+      <div className="px-4 sm:px-6 py-2 bg-slate-100/90 dark:bg-slate-900/90 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 overflow-x-auto shadow-xs">
+        <div className="flex items-center gap-2">
           {UNITS.map((unit) => {
             const isUnitActive = unit.simulators.some((s) => s.id === activeTab);
             return (
               <button
                 key={unit.id}
                 onClick={() => onSelectTab(unit.simulators[0].id)}
-                className={`px-3 py-1 rounded-lg text-xs transition-all whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap active:scale-95 cursor-pointer ${
                   isUnitActive
-                    ? 'font-extrabold bg-accent-primary text-white shadow-sm'
-                    : 'font-bold bg-card-bg border border-border-main text-text-muted hover:text-text-heading hover:bg-card-subtle'
+                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black shadow-md shadow-blue-500/30 ring-2 ring-blue-400/50 scale-[1.02]'
+                    : 'bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 shadow-xs'
                 }`}
               >
                 {unit.shortName}
@@ -321,17 +321,17 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Active Unit's Sibling Simulators */}
-        <div className="flex items-center gap-1 pl-3 border-l border-border-main text-xs shrink-0">
+        <div className="flex items-center gap-1.5 pl-3 border-l border-slate-300 dark:border-slate-700 text-xs shrink-0">
           {activeUnit.simulators.map((sim) => {
             const isActive = activeTab === sim.id;
             return (
               <button
                 key={sim.id}
                 onClick={() => onSelectTab(sim.id)}
-                className={`px-2.5 py-0.5 rounded-md whitespace-nowrap transition-all ${
+                className={`px-3 py-1 rounded-lg whitespace-nowrap text-xs font-bold transition-all duration-200 active:scale-95 cursor-pointer ${
                   isActive
-                    ? 'bg-accent-secondary/15 text-accent-secondary border border-accent-secondary/30 font-extrabold'
-                    : 'text-text-muted font-semibold hover:text-text-heading cursor-pointer'
+                    ? 'bg-blue-600 dark:bg-blue-500 text-white font-black shadow-sm ring-1 ring-blue-400'
+                    : 'bg-white/80 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 shadow-xs'
                 }`}
               >
                 {sim.label.split(' (')[0]}
