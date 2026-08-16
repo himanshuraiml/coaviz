@@ -1,6 +1,6 @@
 [package]
 name = "coaviz"
-version = "1.1.0"
+version = "1.1.1"
 description = "COAViz - Interactive Computer Organization & Architecture Visualizer"
 authors = ["Himanshu Rai"]
 license = "MIT"
