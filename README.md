@@ -1,43 +1,51 @@
 # ⚡ COAViz — Interactive Computer Organization & Architecture Visualizer
 
 [![Release](https://img.shields.io/github/v/release/himanshuraiml/coaviz?style=for-the-badge&color=blue)](https://github.com/himanshuraiml/coaviz/releases/latest)
+[![Tauri](https://img.shields.io/badge/Tauri-v2-24c8db?style=for-the-badge&logo=tauri)](https://tauri.app/)
 [![React](https://img.shields.io/badge/React-18.3-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Rust](https://img.shields.io/badge/Rust-1.77+-dea584?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6.2-646cff?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
 [![Vitest](https://img.shields.io/badge/Vitest-3.0-729b1b?style=for-the-badge&logo=vitest)](https://vitest.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-**COAViz** is a cross-platform educational visualizer and simulation suite built specifically for **Computer Organization and Architecture (COA)** curricula. It bridges the gap between low-level textbook hardware concepts and interactive, cycle-accurate visual execution.
+**COAViz** is an ultra-lightweight, cross-platform educational visualizer and simulation suite built specifically for **Computer Organization and Architecture (COA)** curricula. Powered by **Tauri v2** and **React 18**, it bridges the gap between textbook hardware concepts and interactive, cycle-accurate visual execution with a minimal resource footprint (~**40 MB RAM**, **4.9 MB installer**).
 
 ---
 
-## 📥 Download Desktop App (v1.0.0)
+## 📥 Download Desktop App (v1.1.0)
 
-Standalone native installers and portable bundles are available for Windows and macOS:
+Standalone native installers for macOS and Windows are available on [**GitHub Releases**](https://github.com/himanshuraiml/coaviz/releases/latest):
 
-| Platform | Architecture | Installer Type | Direct Download Link |
-|---|---|---|---|
-| **macOS** | Apple Silicon (`arm64`) | `.dmg` Installer | [**Download DMG**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz-1.0.0-arm64.dmg) |
-| **macOS** | Apple Silicon (`arm64`) | Portable `.zip` | [**Download ZIP**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz-1.0.0-arm64-mac.zip) |
-| **Windows** | 64-bit (`x64`) | `.exe` Setup Installer | [**Download Setup EXE**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz.Setup.1.0.0.exe) |
-| **Windows** | 64-bit (`x64`) | Portable `.zip` | [**Download ZIP**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz-1.0.0-win.zip) |
+| Platform | Architecture | Installer Type | Direct Download Link | Size |
+|---|---|---|---|---|
+| **macOS** | Apple Silicon (`arm64`) | `.dmg` Package | [**Download macOS DMG**](https://github.com/himanshuraiml/coaviz/releases/download/v1.1.0/COAViz_1.1.0_aarch64.dmg) | **~4.9 MB** |
+| **Windows** | 64-bit (`x64`) | Setup Installer (`.exe` / `.msi`) | [**Download Windows Setup**](https://github.com/himanshuraiml/coaviz/releases/latest) | **~6 MB** |
+
+### 🔄 Automatic In-App Updates
+COAViz includes a built-in background updater. When new versions and algorithm features are released on GitHub, the app automatically downloads update deltas in the background and presents a non-intrusive **"Restart & Install Now"** banner.
 
 #### 🍏 macOS Gatekeeper ("App is damaged") Bypass
-Since this release is compiled without an Apple Developer certificate, macOS assigns a quarantine attribute to downloaded third-party binaries, displaying a warning: *"COAViz is damaged and can't be opened."*
+Since this release is compiled without an Apple Developer paid certificate, macOS assigns a quarantine attribute to downloaded third-party binaries, displaying a warning: *"COAViz is damaged and can't be opened."*
 
 To run the application, strip the quarantine flag by running the following command in your terminal:
 
 ```bash
 xattr -cr /Applications/COAViz.app
 ```
-*(If you are running the app directly from your Downloads folder, run `xattr -cr ~/Downloads/COAViz.app` instead).*
+*(If running directly from your Downloads folder, run `xattr -cr ~/Downloads/COAViz.app` instead).*
 
 ---
 
 ## 🌟 Key Highlights & Features
 
-### 🏛️ Complete Curriculum Coverage (5 Core Units, 14 Simulators)
+### 🚀 Ultra-Lightweight Tauri v2 Architecture
+- **~70% Less Memory**: Runs at ~35–50 MB RAM at idle vs ~150 MB in traditional wrappers.
+- **Instant Cold Launch**: Launches in ~0.3 seconds.
+- **Tiny Download Size**: Less than 5 MB download.
+
+### 🏛️ Complete Curriculum Coverage (5 Core Units, 15 Simulators + 60 LMS Sessions)
 
 1. **Unit 1: Computer Arithmetic & IEEE-754**
    - **Booth's Multiplication**: Step-by-step signed 2's complement multiplication with cycle-accurate $A, Q, Q_{-1}$ bit manipulation and arithmetic right shift ($ASR$).
@@ -67,16 +75,13 @@ xattr -cr /Applications/COAViz.app
 
 ## 🔬 Interactive Modalities
 
+- ✍️ **Smartboard Whiteboard Overlay**: On-screen transparent annotation canvas with Pen, Highlighter, Laser Pointer, Eraser, Undo/Redo, and PNG export.
 - 📊 **Multi-Format Lab Exporter**: 1-click export of any simulation trace to **CSV Spreadsheet**, **Markdown Table**, or **Print / PDF Lab Sheet**.
-- 🔀 **Side-by-Side Comparative Mode**: Synchronized dual views comparing:
-  - *Restoring vs Non-Restoring Division*
-  - *Direct vs 2-Way vs Fully Associative Cache*
-  - *Pipeline with Forwarding vs Hardware Bubble Stalls*
+- 🔀 **Side-by-Side Comparative Mode**: Synchronized dual views comparing algorithms.
 - 🎯 **Predict & Verify Practice Challenges**: Interactive active-learning quiz prompts built directly into the simulators.
 - ⏱️ **Visual Scrubber Timeline**: Drag-and-click navigation with cycle bookmarks and state-diff visual highlighting.
 - ⌨️ **Smartboard & Keyboard Remote Controls**: Global hotkeys (`Space`, `Arrows`, `Home`, `End`, `W`, `F`, `T`, `?`).
 - 🎨 **Adaptive Dual Themes**: High-contrast Light Mode and Cyberpunk Dark Mode tailored for lecture halls and smartboards.
-- 💾 **State Persistence**: Automatic `localStorage` synchronization of algorithm states, parameters, and custom memory addresses.
 
 ---
 
@@ -85,6 +90,7 @@ xattr -cr /Applications/COAViz.app
 ### Prerequisites
 
 - **Node.js**: `v18.0.0` or later
+- **Rust Toolchain**: `rustc` & `cargo` 1.77+ (Install via [rustup.rs](https://rustup.rs/))
 - **npm** or **pnpm** or **yarn**
 
 ### Installation
@@ -100,26 +106,27 @@ cd coaviz
 npm install
 ```
 
-### Development Server
+### Running Locally
 
 ```bash
+# Run web version in browser (http://localhost:5173)
 npm run dev
+
+# Run native desktop app (Tauri v2)
+npm run desktop:dev
 ```
 
-Visit `http://localhost:5173` in your browser.
-
-### Production Build
+### Production Packaging
 
 ```bash
+# Build desktop app for macOS (DMG & .app)
+npm run build:mac
+
+# Build desktop app for Windows (NSIS .exe & .msi)
+npm run build:win
+
+# Build web production bundle (dist/)
 npm run build
-```
-
-The optimized static assets will be bundled into the `dist/` directory with code splitting (`~59 kB` gzipped initial load).
-
-### Preview Production Build
-
-```bash
-npm run preview
 ```
 
 ---
@@ -142,20 +149,26 @@ npm run test:watch
 
 ```
 coaviz/
-├── public/                 # Static public assets
+├── .github/workflows/      # Automated multi-platform CI release workflow
+├── src-tauri/              # Tauri v2 native Rust core & configuration
+│   ├── capabilities/       # Security capabilities & permissions
+│   ├── src/                # Rust main.rs & lib.rs entrypoints
+│   ├── tauri.conf.json     # Window dimensions, updater endpoints & bundle config
+│   └── Cargo.toml          # Rust dependencies (tauri v2, updater, process, opener)
 ├── src/
 │   ├── components/
 │   │   ├── comparative/    # Side-by-Side comparative analysis components
-│   │   ├── lms/            # LMS course viewer & unit guides
+│   │   ├── lms/            # LMS course viewer & 60-session unit guides
 │   │   ├── schematic/      # X-Ray cutaways & clock waveform visualizers
-│   │   ├── shell/          # Global Header, ControllerBar, ExportMenu, Timeline
-│   │   └── simulators/     # 14 Unit Simulators (Booth, Pipeline, Cache, DMA, etc.)
+│   │   ├── shell/          # Global Header, ControllerBar, Whiteboard, UpdateBanner
+│   │   └── simulators/     # 15 Unit Simulators (Booth, Pipeline, Cache, DMA, etc.)
 │   ├── engines/            # Deterministic, cycle-accurate simulation logic
 │   │   ├── arithmetic/     # Booth, Division, IEEE-754, Number Systems
 │   │   ├── cpu/            # Von Neumann, Datapath, Addressing, Pipeline, Control Unit
 │   │   ├── io/             # DMA Controller, I/O Transfer Modes
 │   │   └── memory/         # Cache Mapping, Replacement, Virtual Memory
-│   ├── hooks/              # usePersistentState, useKeyboardShortcuts
+│   ├── hooks/              # usePersistentState, useKeyboardShortcuts, useAutoUpdate
+│   ├── types/              # desktop.d.ts type declarations
 │   ├── utils/              # exportTrace (CSV, Markdown, PDF)
 │   ├── App.tsx             # Root app with lazy-loaded simulator chunks
 │   ├── index.css           # Design tokens, variables & animations
@@ -182,3 +195,4 @@ Contributions, feature suggestions, and educational enhancements are welcome!
 ## 📄 License
 
 Distributed under the **MIT License**. See `LICENSE` for more information.
+
