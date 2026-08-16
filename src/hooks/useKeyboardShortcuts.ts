@@ -10,6 +10,7 @@ export interface ShortcutHandlers {
   onToggleFullscreen?: () => void;
   onToggleTheme?: () => void;
   onOpenHelp?: () => void;
+  onOpenSearch?: () => void;
   onCloseAll?: () => void;
 }
 
@@ -18,6 +19,13 @@ export function useKeyboardShortcuts(handlers: ShortcutHandlers, isEnabled: bool
     if (!isEnabled) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Global Search Command Palette (Cmd+K / Ctrl+K) works even inside or outside inputs
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        handlers.onOpenSearch?.();
+        return;
+      }
+
       // Don't trigger simulator shortcuts if user is typing inside an input, textarea, or contentEditable
       const target = e.target as HTMLElement | null;
       if (
@@ -59,6 +67,15 @@ export function useKeyboardShortcuts(handlers: ShortcutHandlers, isEnabled: bool
         case 'End':
           e.preventDefault();
           handlers.onStepLast?.();
+          break;
+
+        case 'k':
+        case 'K':
+        case '/':
+          if (!e.ctrlKey && !e.metaKey) {
+            e.preventDefault();
+            handlers.onOpenSearch?.();
+          }
           break;
 
         case 'w':
