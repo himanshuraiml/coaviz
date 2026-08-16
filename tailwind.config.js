@@ -1,0 +1,45 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          cyan: '#0284c7',
+          darkCyan: '#38bdf8',
+          indigo: '#4f46e5',
+          darkIndigo: '#818cf8',
+          emerald: '#059669',
+          darkEmerald: '#34d399',
+          amber: '#d97706',
+          darkAmber: '#fbbf24',
+          rose: '#e11d48',
+          darkRose: '#fb7185',
+        },
+        smart: {
+          bg: 'var(--canvas-bg)',
+          surface: 'var(--card-surface)',
+          card: 'var(--card-bg)',
+          border: 'var(--border-main)',
+          accent: 'var(--accent-primary)',
+          text: 'var(--text-body)',
+          heading: 'var(--text-heading)',
+          muted: 'var(--text-muted)'
+        }
+      },
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Fira Code"', 'ui-monospace', 'monospace'],
+      },
+      animation: {
+        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'glow': 'glowPulse 2s ease-in-out infinite',
+      }
+    },
+  },
+  plugins: [],
+}
