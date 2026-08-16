@@ -88,6 +88,23 @@
     letter-spacing: -0.015em;
   }
 
+  /* Input, Select, Option Global Theming Defaults */
+  input, select, textarea {
+    background-color: var(--card-bg);
+    color: var(--text-heading);
+    border-color: var(--border-main);
+  }
+
+  option {
+    background-color: var(--card-bg);
+    color: var(--text-heading);
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+  }
+
   /* Custom high-visibility scrollbar */
   ::-webkit-scrollbar {
     width: 7px;

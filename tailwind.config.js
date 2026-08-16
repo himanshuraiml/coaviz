@@ -8,6 +8,21 @@ export default {
   theme: {
     extend: {
       colors: {
+        'canvas-bg': 'var(--canvas-bg)',
+        'card-bg': 'var(--card-bg)',
+        'card-surface': 'var(--card-surface)',
+        'card-subtle': 'var(--card-subtle)',
+        'border-main': 'var(--border-main)',
+        'border-subtle': 'var(--border-subtle)',
+        'text-heading': 'var(--text-heading)',
+        'text-body': 'var(--text-body)',
+        'text-muted': 'var(--text-muted)',
+        'text-faint': 'var(--text-faint)',
+        'accent-primary': 'var(--accent-primary)',
+        'accent-secondary': 'var(--accent-secondary)',
+        'accent-emerald': 'var(--accent-emerald)',
+        'accent-amber': 'var(--accent-amber)',
+        'accent-rose': 'var(--accent-rose)',
         brand: {
           cyan: '#0284c7',
           darkCyan: '#38bdf8',
