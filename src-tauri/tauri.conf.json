@@ -12,6 +12,7 @@
   "app": {
     "windows": [
       {
+        "label": "main",
         "title": "COAViz - Interactive Computer Organization & Architecture Visualizer",
         "width": 1400,
         "height": 900,
@@ -43,6 +44,7 @@
   },
   "plugins": {
     "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDM1MTczRTYxNTc4MUNCOTkKUldTWnk0RlhZVDRYTlJqUEhPMGlmSFZNZWQzNGF1WGdLdDgxZkpKckJKVFlGRjhYL1U2VStCRzEK",
       "endpoints": [
         "https://github.com/himanshuraiml/coaviz/releases/latest/download/latest.json"
       ]

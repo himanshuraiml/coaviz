@@ -43,9 +43,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: 'COAViz ${{ github.ref_name }}'
+          tagName: v__VERSION__
+          releaseName: 'COAViz v__VERSION__'
           releaseBody: 'Automated multi-platform desktop release build for Windows and macOS.'
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}
+
