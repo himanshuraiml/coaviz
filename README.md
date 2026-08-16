@@ -23,6 +23,16 @@ Standalone native installers and portable bundles are available for Windows and 
 | **Windows** | 64-bit (`x64`) | `.exe` Setup Installer | [**Download Setup EXE**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz.Setup.1.0.0.exe) |
 | **Windows** | 64-bit (`x64`) | Portable `.zip` | [**Download ZIP**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz-1.0.0-win.zip) |
 
+#### 🍏 macOS Gatekeeper ("App is damaged") Bypass
+Since this release is compiled without an Apple Developer certificate, macOS assigns a quarantine attribute to downloaded third-party binaries, displaying a warning: *"COAViz is damaged and can't be opened."*
+
+To run the application, strip the quarantine flag by running the following command in your terminal:
+
+```bash
+xattr -cr /Applications/COAViz.app
+```
+*(If you are running the app directly from your Downloads folder, run `xattr -cr ~/Downloads/COAViz.app` instead).*
+
 ---
 
 ## 🌟 Key Highlights & Features
