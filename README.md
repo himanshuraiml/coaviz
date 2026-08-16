@@ -1,5 +1,6 @@
 # ⚡ COAViz — Interactive Computer Organization & Architecture Visualizer
 
+[![Release](https://img.shields.io/github/v/release/himanshuraiml/coaviz?style=for-the-badge&color=blue)](https://github.com/himanshuraiml/coaviz/releases/latest)
 [![React](https://img.shields.io/badge/React-18.3-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6.2-646cff?style=for-the-badge&logo=vite)](https://vitejs.dev/)
@@ -7,7 +8,20 @@
 [![Vitest](https://img.shields.io/badge/Vitest-3.0-729b1b?style=for-the-badge&logo=vitest)](https://vitest.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-**COAViz** is a web-based educational visualizer and simulation suite built specifically for **Computer Organization and Architecture (COA)** curricula. It bridges the gap between low-level textbook hardware concepts and interactive, cycle-accurate visual execution.
+**COAViz** is a cross-platform educational visualizer and simulation suite built specifically for **Computer Organization and Architecture (COA)** curricula. It bridges the gap between low-level textbook hardware concepts and interactive, cycle-accurate visual execution.
+
+---
+
+## 📥 Download Desktop App (v1.0.0)
+
+Standalone native installers and portable bundles are available for Windows and macOS:
+
+| Platform | Architecture | Installer Type | Direct Download Link |
+|---|---|---|---|
+| **macOS** | Apple Silicon (`arm64`) | `.dmg` Installer | [**Download DMG**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz-1.0.0-arm64.dmg) |
+| **macOS** | Apple Silicon (`arm64`) | Portable `.zip` | [**Download ZIP**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz-1.0.0-arm64-mac.zip) |
+| **Windows** | 64-bit (`x64`) | `.exe` Setup Installer | [**Download Setup EXE**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz.Setup.1.0.0.exe) |
+| **Windows** | 64-bit (`x64`) | Portable `.zip` | [**Download ZIP**](https://github.com/himanshuraiml/coaviz/releases/download/v1.0.0/COAViz-1.0.0-win.zip) |
 
 ---
 
