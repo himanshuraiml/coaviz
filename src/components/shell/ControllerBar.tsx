@@ -135,14 +135,14 @@ export const ControllerBar: React.FC<ControllerBarProps> = ({
             <span>Prev</span>
           </button>
 
-          {/* Hero Auto-Step / Pause Button */}
+          {/* Primary Play / Pause Action Button */}
           <button
             onClick={onTogglePlay}
-            title={isPlaying ? "Pause Simulation (Key: Space)" : "Play Auto-Step Simulation (Key: Space)"}
-            className={`px-5 sm:px-7 py-2.5 rounded-xl text-white font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg active:scale-95 transition-all ${
+            title={isPlaying ? "Pause Simulation (Key: Space)" : "Play Simulation (Key: Space)"}
+            className={`px-6 sm:px-8 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-md active:scale-95 transition-all cursor-pointer ${
               isPlaying
-                ? 'bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 shadow-amber-500/25'
-                : 'bg-gradient-to-r from-accent-primary via-cyan-600 to-accent-secondary shadow-accent-primary/25'
+                ? 'bg-amber-500 hover:bg-amber-600 text-slate-950 shadow-amber-500/30 ring-2 ring-amber-400/50'
+                : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/30 ring-2 ring-emerald-400/50'
             }`}
           >
             {isPlaying ? (
@@ -153,7 +153,7 @@ export const ControllerBar: React.FC<ControllerBarProps> = ({
             ) : (
               <>
                 <Play className="w-4 h-4 fill-current" />
-                <span>{isEnd ? 'Replay' : 'Auto Step'}</span>
+                <span>{isEnd ? 'Replay' : 'Play'}</span>
               </>
             )}
           </button>

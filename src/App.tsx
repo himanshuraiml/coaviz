@@ -3,7 +3,6 @@ import { Header, SimulatorTab } from './components/shell/Header.tsx';
 import { WhiteboardOverlay } from './components/shell/WhiteboardOverlay.tsx';
 import { HelpModal } from './components/shell/HelpModal.tsx';
 import { KeyboardShortcutsModal } from './components/shell/KeyboardShortcutsModal.tsx';
-import { CommandPalette } from './components/shell/CommandPalette.tsx';
 import { usePersistentState } from './hooks/usePersistentState.ts';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts.ts';
 import { Cpu, Loader2 } from 'lucide-react';
@@ -91,7 +90,6 @@ export const App: React.FC = () => {
   const [isWhiteboardOpen, setIsWhiteboardOpen] = useState<boolean>(false);
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
   const [isShortcutsOpen, setIsShortcutsOpen] = useState<boolean>(false);
-  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState<boolean>(false);
 
   // Sync theme with HTML root class
   useEffect(() => {
@@ -130,12 +128,10 @@ export const App: React.FC = () => {
     onToggleFullscreen: handleToggleFullscreen,
     onToggleTheme: () => setIsDark((prev) => !prev),
     onOpenHelp: () => setIsShortcutsOpen(true),
-    onOpenSearch: () => setIsCommandPaletteOpen((prev) => !prev),
     onCloseAll: () => {
       setIsWhiteboardOpen(false);
       setIsHelpOpen(false);
       setIsShortcutsOpen(false);
-      setIsCommandPaletteOpen(false);
     },
   });
 
@@ -160,7 +156,6 @@ export const App: React.FC = () => {
         onToggleWhiteboard={() => setIsWhiteboardOpen(!isWhiteboardOpen)}
         onOpenHelp={() => setIsHelpOpen(true)}
         onOpenShortcuts={() => setIsShortcutsOpen(true)}
-        onOpenSearch={() => setIsCommandPaletteOpen(true)}
       />
 
       {/* Main Simulator & LMS Workspace with Suspense */}
@@ -194,16 +189,6 @@ export const App: React.FC = () => {
           {activeTab === 'dma' && <DMASimulator />}
         </Suspense>
       </main>
-
-      {/* Global Quick Search Command Palette */}
-      <CommandPalette
-        isOpen={isCommandPaletteOpen}
-        onClose={() => setIsCommandPaletteOpen(false)}
-        onSelectTab={(tab) => {
-          setActiveTab(tab);
-          setIsCommandPaletteOpen(false);
-        }}
-      />
 
       {/* Interactive Smartboard Whiteboard Overlay */}
       <WhiteboardOverlay

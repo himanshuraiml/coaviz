@@ -20,8 +20,7 @@ import {
   Share2,
   GraduationCap,
   ChevronDown,
-  Keyboard,
-  Search
+  Keyboard
 } from 'lucide-react';
 
 export type SimulatorTab = 
@@ -52,7 +51,6 @@ interface HeaderProps {
   onToggleWhiteboard: () => void;
   onOpenHelp: () => void;
   onOpenShortcuts: () => void;
-  onOpenSearch?: () => void;
 }
 
 export const UNITS = [
@@ -132,7 +130,6 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleWhiteboard,
   onOpenHelp,
   onOpenShortcuts,
-  onOpenSearch,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
@@ -171,49 +168,40 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Center: Quick Search Bar & Active Subsystem Dropdown Navigator */}
-        <div className="flex items-center gap-2.5">
-          {/* Quick Search Command Palette Trigger */}
-          {onOpenSearch && (
-            <button
-              onClick={onOpenSearch}
-              title="Search simulators & units (⌘K)"
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-card-surface border border-border-main hover:border-accent-primary text-text-muted hover:text-text-heading text-xs font-semibold shadow-sm transition-all"
-            >
-              <Search className="w-3.5 h-3.5 text-accent-primary" />
-              <span>Search...</span>
-              <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-card-bg border border-border-main text-text-faint">
-                ⌘K
-              </kbd>
-            </button>
-          )}
+        {/* Center: Active Subsystem Dropdown Navigator with Solid Opaque Background */}
+        <div className="relative">
+          <button
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-card-surface border border-border-main hover:border-accent-primary transition-all text-xs font-bold shadow-sm cursor-pointer"
+          >
+            <div className="w-2.5 h-2.5 rounded-full bg-accent-primary animate-pulse" />
+            <div className="flex flex-col text-left">
+              <span className="text-[9px] uppercase tracking-wider text-text-faint font-bold">
+                {activeUnit.shortName}
+              </span>
+              <span className="text-xs sm:text-sm font-extrabold text-text-heading">
+                {activeSim?.label || 'Select Architecture Module'}
+              </span>
+            </div>
+            <ChevronDown className={`w-4 h-4 text-text-muted transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+          </button>
 
-          {/* Module Selector Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-card-surface border border-border-main hover:border-accent-primary transition-all text-xs font-bold shadow-sm"
-            >
-              <div className="w-2.5 h-2.5 rounded-full bg-accent-primary animate-pulse" />
-              <div className="flex flex-col text-left">
-                <span className="text-[9px] uppercase tracking-wider text-text-faint font-bold">
-                  {activeUnit.shortName}
-                </span>
-                <span className="text-xs sm:text-sm font-extrabold text-text-heading">
-                  {activeSim?.label || 'Select Architecture Module'}
-                </span>
-              </div>
-              <ChevronDown className={`w-4 h-4 text-text-muted transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
+          {/* Expanded Dropdown Menu with solid opaque background & click-outside backdrop */}
+          {isDropdownOpen && (
+            <>
+              {/* Click-away backdrop overlay */}
+              <div 
+                className="fixed inset-0 z-40 bg-slate-950/30 backdrop-blur-[2px]" 
+                onClick={() => setIsDropdownOpen(false)} 
+              />
 
-            {/* Expanded Dropdown Menu */}
-            {isDropdownOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[320px] sm:w-[480px] p-4 rounded-2xl bg-card-bg border border-border-main shadow-2xl z-50 max-h-[80vh] overflow-y-auto space-y-3 animate-in fade-in zoom-in-95 duration-150">
+              {/* Dropdown Container */}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[340px] sm:w-[500px] p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 shadow-2xl z-50 max-h-[80vh] overflow-y-auto space-y-3.5">
                 {UNITS.map((unit) => {
                   const UnitIcon = unit.icon;
                   return (
                     <div key={unit.id} className="space-y-1.5">
-                      <div className="flex items-center gap-2 px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-text-muted border-b border-border-main">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-text-heading border-b border-border-main bg-slate-100 dark:bg-slate-800 rounded-lg">
                         <UnitIcon className="w-3.5 h-3.5 text-accent-primary" />
                         <span>{unit.name}</span>
                       </div>
@@ -228,18 +216,20 @@ export const Header: React.FC<HeaderProps> = ({
                                 onSelectTab(sim.id);
                                 setIsDropdownOpen(false);
                               }}
-                              className={`flex items-center justify-between p-2.5 rounded-xl text-left text-xs font-bold transition-all ${
+                              className={`flex items-center justify-between p-2.5 rounded-xl text-left text-xs font-bold transition-all cursor-pointer ${
                                 isCurrent
-                                  ? 'bg-accent-primary/10 text-accent-primary border border-accent-primary/30 shadow-sm'
-                                  : 'hover:bg-card-surface text-text-body'
+                                  ? 'bg-accent-primary text-white shadow-md'
+                                  : 'bg-slate-50 dark:bg-slate-800/80 hover:bg-accent-primary/15 hover:text-accent-primary text-text-body border border-border-main'
                               }`}
                             >
                               <div className="flex items-center gap-2 truncate">
-                                <SimIcon className={`w-3.5 h-3.5 ${isCurrent ? 'text-accent-primary' : 'text-text-faint'}`} />
+                                <SimIcon className={`w-3.5 h-3.5 ${isCurrent ? 'text-white' : 'text-text-muted'}`} />
                                 <span className="truncate">{sim.label}</span>
                               </div>
                               {sim.badge && (
-                                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary font-bold shrink-0 ml-1">
+                                <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-bold shrink-0 ml-1 ${
+                                  isCurrent ? 'bg-white/20 text-white' : 'bg-accent-primary/10 text-accent-primary'
+                                }`}>
                                   {sim.badge}
                                 </span>
                               )}
@@ -251,8 +241,8 @@ export const Header: React.FC<HeaderProps> = ({
                   );
                 })}
               </div>
-            )}
-          </div>
+            </>
+          )}
         </div>
 
         {/* Classroom Quick Action Controls */}
